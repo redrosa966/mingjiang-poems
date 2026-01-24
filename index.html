@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名江诗词集</title>
+    <script src="data.js"></script>
+    <style>
+        body { font-family: "Microsoft YaHei", serif; background-color: #f4f1ea; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); min-height: 80vh; }
+        h1 { text-align: center; color: #8b4513; border-bottom: 2px solid #8b4513; padding-bottom: 10px; }
+        .welcome-msg { text-align: center; font-style: italic; color: #666; margin-bottom: 30px; }
+        
+        /* 列表样式 */
+        .poem-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .poem-list li { background: #fdfaf2; padding: 15px; border: 1px solid #e0d9c5; cursor: pointer; text-align: center; border-radius: 4px; transition: 0.3s; }
+        .poem-list li:hover { background: #8b4513; color: white; }
+
+        /* 详情页面样式 */
+        .poem-detail { display: none; text-align: center; }
+        .poem-title { font-size: 24px; font-weight: bold; color: #8b4513; margin-bottom: 20px; }
+        .poem-content { 
+            font-size: 20px; 
+            white-space: pre-wrap; 
+            display: inline-block; 
+            text-align: center; 
+            letter-spacing: 4px;
+            writing-mode: horizontal-tb; /* 默认横排，如需古风竖排可改为 vertical-rl */
+        }
+        .back-btn { display: block; width: 100px; margin: 30px auto; padding: 10px; background: #8b4513; color: white; text-align: center; cursor: pointer; border-radius: 4px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="home-page">
+        <h1>名江诗词集</h1>
+        <p class="welcome-msg">欢迎来欣赏句子，品味文字之美</p>
+        <ul class="poem-list" id="list-container">
+            </ul>
+    </div>
+
+    <div id="detail-page" class="poem-detail">
+        <div id="detail-title" class="poem-title"></div>
+        <div id="detail-content" class="poem-content"></div>
+        <a class="back-btn" onclick="showHome()">回主页</a>
+    </div>
+</div>
+
+<script>
+    // 渲染列表
+    const listContainer = document.getElementById('list-container');
+    const homePage = document.getElementById('home-page');
+    const detailPage = document.getElementById('detail-page');
+
+    function init() {
+        if (typeof poemData === 'undefined') {
+            listContainer.innerHTML = "<p>暂无数据，请先从 Access 同步。</p>";
+            return;
+        }
+        
+        poemData.forEach((poem, index) => {
+            const li = document.createElement('li');
+            li.innerText = poem.title;
+            li.onclick = () => showPoem(index);
+            listContainer.appendChild(li);
+        });
+    }
+
+    // 显示诗词详情
+    function showPoem(index) {
+        const poem = poemData[index];
+        document.getElementById('detail-title').innerText = poem.title;
+        
+        // 自动排版逻辑：如果是五言或七言，自动处理换行
+        let content = poem.content;
+        // 如果你的数据库里没换行，这里可以按字数强制换行（可选）
+        // content = content.replace(/(.{5})/g, "$1\n"); 
+        
+        document.getElementById('detail-content').innerText = content;
+        
+        homePage.style.display = 'none';
+        detailPage.style.display = 'block';
+    }
+
+    // 返回主页
+    function showHome() {
+        homePage.style.display = 'block';
+        detailPage.style.display = 'none';
+    }
+
+    init();
+</script>
+
+</body>
+</html>
