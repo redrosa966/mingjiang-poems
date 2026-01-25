@@ -13,9 +13,7 @@
         body { 
             font-family: "Microsoft YaHei", sans-serif; 
             background-color: var(--bg-color); 
-            margin: 0; 
-            padding: 20px; 
-            color: #333;
+            margin: 0; padding: 20px; color: #333;
         }
         .container { max-width: 900px; margin: 0 auto; }
         header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #d4a373; padding-bottom: 20px; }
@@ -28,42 +26,27 @@
         }
         .card { 
             background: var(--card-bg); 
-            padding: 20px; 
-            border-radius: 12px; 
-            cursor: pointer; 
+            padding: 20px; border-radius: 12px; cursor: pointer; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            border: 1px solid #eee;
+            transition: transform 0.2s; border: 1px solid #eee;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .card-title { font-size: 1.2em; font-weight: bold; color: var(--primary-color); }
+        .card-title { font-size: 1.1em; font-weight: bold; color: var(--primary-color); }
+        .card-brand { color: #d4a373; font-size: 0.9em; margin-bottom: 5px; }
         .card-date { font-size: 0.85em; color: #999; margin-top: 5px; }
         
-        /* 详情弹窗层 */
         #details-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center; align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
         }
         .details-content {
-            background: var(--bg-color);
-            width: 90%; max-width: 600px;
-            max-height: 80vh;
-            padding: 40px;
-            border-radius: 15px;
-            position: relative;
-            overflow-y: auto;
-            text-align: center; /* 诗词居中 */
+            background: var(--bg-color); width: 90%; max-width: 600px;
+            max-height: 80vh; padding: 40px; border-radius: 15px;
+            position: relative; overflow-y: auto; text-align: center;
         }
         .poem-text { 
-            white-space: pre-wrap; 
-            line-height: 2.2; 
-            font-size: 1.2em; 
-            letter-spacing: 2px;
-            margin: 30px 0;
+            white-space: pre-wrap; line-height: 2.2; font-size: 1.25em; 
+            letter-spacing: 2px; margin: 30px 0; font-weight: 500;
         }
         .poem-meta { color: #666; font-size: 0.9em; border-top: 1px dashed #ccc; padding-top: 15px; text-align: left; }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
@@ -74,25 +57,25 @@
 <div class="container">
     <header>
         <h1>张明江诗词集</h1>
-        <p>欢迎来欣赏句子，品味文字之美</p>
+        <p>品读词牌雅韵，感悟文字人生</p>
     </header>
 
     <div id="list" class="list-grid">
-        <p style="grid-column: 1/-1; text-align: center;">正在同步最新诗稿，请稍候...</p>
+        <p style="grid-column: 1/-1; text-align: center;">正在同步最新诗稿...</p>
     </div>
 </div>
 
 <div id="details-overlay" onclick="closeDetails()">
     <div class="details-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeDetails()">&times;</span>
-        <h2 id="modal-title" style="color:var(--primary-color);"></h2>
+        <h2 id="modal-title" style="color:var(--primary-color); margin-bottom: 5px;"></h2>
         <div id="modal-date" class="card-date" style="margin-bottom: 20px;"></div>
         <div id="modal-content" class="poem-text"></div>
         <div id="modal-event" class="poem-meta"></div>
     </div>
 </div>
 
-<script src="data.js?v=20260124"></script>
+<script src="data.js?v=2026012421"></script>
 
 <script>
     const listDiv = document.getElementById('list');
@@ -100,10 +83,13 @@
 
     function showDetails(index) {
         const item = poemData[index];
-        document.getElementById('modal-title').innerText = item.title;
-        document.getElementById('modal-date').innerText = "创作日期：" + (item.date || '未记录');
+        // 核心补全：如果存在词牌名，显示为 “词牌名·标题”
+        const displayTitle = item.brand ? `${item.brand} · ${item.title}` : item.title;
+        
+        document.getElementById('modal-title').innerText = displayTitle;
+        document.getElementById('modal-date').innerText = "日期：" + (item.date || '未记录');
         document.getElementById('modal-content').innerText = item.content;
-        document.getElementById('modal-event').innerHTML = "<strong>背景日志：</strong>" + (item.event || '无');
+        document.getElementById('modal-event').innerHTML = "<strong>创作日志：</strong>" + (item.event || '无');
         overlay.style.display = 'flex';
     }
 
@@ -111,13 +97,15 @@
         overlay.style.display = 'none';
     }
 
-    // 初始化渲染列表
     if (typeof poemData !== 'undefined' && poemData.length > 0) {
         listDiv.innerHTML = '';
         poemData.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'card';
+            // 列表页也显示词牌名
+            const brandTag = item.brand ? `<div class="card-brand">${item.brand}</div>` : '';
             card.innerHTML = `
+                ${brandTag}
                 <div class="card-title">${item.title}</div>
                 <div class="card-date">${item.date || ''}</div>
             `;
@@ -125,7 +113,7 @@
             listDiv.appendChild(card);
         });
     } else {
-        listDiv.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">暂无数据，请检查 data.js 是否生成成功。</p>';
+        listDiv.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">等待数据同步中...</p>';
     }
 </script>
 
