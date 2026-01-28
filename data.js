@@ -178,7 +178,7 @@
     "title": "送唐王川普",
     "brand": "满江红",
     "date": "2020/11/12",
-    "event": "USA current president Trump doesn't want to face h",
+    "event": "USA current president Trump doesn't want to face",
     "content": "挥手今且别，\n四年来，大千世界，被我搅黑\n美国优先退群友，贸易战火正烈 中国怒，盟邦不悦 自鸣得意股指涨 却新冠瘟疫狰如铁 恰碰得，满头血  大选一夜 惊 望天裂  望荧幕纵横交错， 红蓝易色 怒欲翻盘诉讼起，恐难赢得判决  望窗外， 萧萧落叶  本想官司缠到底， 怕朋党皆弃友尽决  我去也，白翁接"
   },
   {
