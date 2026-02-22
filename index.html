@@ -20,7 +20,8 @@
         #details-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
         .details-content { background: var(--bg-color); width: 90%; max-width: 600px; max-height: 85vh; padding: 30px; border-radius: 15px; position: relative; overflow-y: auto; text-align: center; }
         .poem-text { white-space: pre-wrap; line-height: 2.2; font-size: 1.3em; letter-spacing: 2px; margin: 25px 0; font-weight: 500; color: #222; }
-        .poem-meta { color: #666; font-size: 0.9em; border-top: 1px dashed #ccc; padding-top: 15px; text-align: left; margin-top: 20px; text-align: left; }
+        .poem-meta { color: #666; font-size: 0.9em; border-top: 1px dashed #ccc; padding-top: 15px; text-align: left; margin-top: 20px; text-align: left;
+    padding-left: 10%; /* 让内容向右缩进 10% 的距离，不会死贴左边框 */}
         
         /* 按钮样式 */
         .back-btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 30px; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px; }
