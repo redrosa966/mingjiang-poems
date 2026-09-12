@@ -248,7 +248,7 @@
     "title": "rose testing",
     "brand": "test",
     "date": "",
-    "event": "测试用",
+    "event": "测试用 刚加了一句",
     "content": "仅测试 测试form 的 新链接"
   },
   {
