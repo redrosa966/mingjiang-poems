@@ -50,15 +50,8 @@
     </div>
 </div>
 
-/*<script src="data.js?v=20260124_FINAL"></script>*/
-<!-- 动态加载 data.js，附带时间戳彻底解决 GitHub CDN 缓存 -->
-<script>
-    (function() {
-        var script = document.createElement('script');
-        script.src = 'data.js?v=' + new Date().getTime();
-        document.write(script.outerHTML);
-    })();
-</script>
+<script src="data.js?v=20260124_FINAL"></script>
+
 <script>
     const listDiv = document.getElementById('list');
     const overlay = document.getElementById('details-overlay');
