@@ -249,7 +249,7 @@
     "brand": "test",
     "date": "",
     "event": "测试用 刚加了一句 词背景",
-    "content": "仅测试 测试form 的 新链接 又加了一句"
+    "content": "仅测试 测试form 的 新链接 刚改"
   },
   {
     "title": "毛泽东",
