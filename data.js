@@ -249,10 +249,10 @@
     "brand": "test",
     "date": "",
     "event": "测试用 刚加了一句 词背景",
-    "content": "仅测试 测试form 的 新链接 刚改"
+    "content": "仅测试 测试 用于update Windows 11"
   },
   {
-    "title": "毛泽东",
+    "title": "毛泽东-纪年长征",
     "brand": "长征颂",
     "date": "",
     "event": "红军两万五千里长征记念",
