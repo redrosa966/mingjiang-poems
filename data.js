@@ -245,11 +245,11 @@
     "content": "新冠疫情突发狂，成千上万数日间。政府慌忙急封城，民众不知怎逃芒。\n商场门外排长龙，货物限购秒扫光。静坐家中望窗外，严阵已待抗新冠."
   },
   {
-    "title": "rose testing",
+    "title": "rose testing update oct 7",
     "brand": "test",
     "date": "",
     "event": "测试用 刚加了一句 词背景",
-    "content": "仅测试 测试form 的 新链接 刚改"
+    "content": "October 7 仅测试 测试form 的 新链接 刚改"
   },
   {
     "title": "毛泽东",
